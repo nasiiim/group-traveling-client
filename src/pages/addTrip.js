@@ -3,29 +3,31 @@ import { useState } from 'react'
 import axios from 'axios';
 import {
     Container, Form, Row, Col,
-    InputGroup, FormControl, Button
+     FormControl, Button
 } from 'react-bootstrap'
 
 
 
-const addTrip = () => {
+const AddTrip = (props) => {
 
-const [location, setLocation] = useState("")
-const[startDate, setStartDate] = useState("")
-const[endDate, setEndDate] = useState("")
+    const [location, setLocation] = useState("")
+    const [startDate, setStartDate] = useState("")
+    const [endDate, setEndDate] = useState("")
 
-
+    const API_URL = 'http://localhost:3000'
 
     const submitForm = (e) => {
         e.preventDefault()
 
-        const body = { startDate : startDate, endDate : endDate, destination : location  }
-        
-        axios.post("", body)
-        .then(() =>{
-            
-        })
+        const body = { startDate: startDate, endDate: endDate, destination: location }
 
+        axios.post(`${API_URL}/api/trips`, body)
+            .then((res) => {
+                setLocation('')
+                setStartDate('')
+                setEndDate('')
+            })
+            .catch((error) => console.log(error));
     }
 
 
@@ -43,18 +45,18 @@ const[endDate, setEndDate] = useState("")
                         </Row>
                         <Row>
                             <Col>
-                            <FormControl type='text'
-                                placeholder='checkin'
-                                value={startDate}
-                                onChange={(e) => setStartDate(e.target.value)}
-                             />   
+                                <FormControl type='date'
+                                    placeholder='checkin'
+                                    value={startDate}
+                                    onChange={(e) => setStartDate(e.target.value)}
+                                />
                             </Col>
                             <Col>
-                            <FormControl type='text'
-                                placeholder='checkout'
-                                value={endDate}
-                                onChange={(e) => setEndDate(e.target.value)}
-                             />   
+                                <FormControl type='date'
+                                    placeholder='checkout'
+                                    value={endDate}
+                                    onChange={(e) => setEndDate(e.target.value)}
+                                />
                             </Col>
                         </Row>
 
@@ -67,4 +69,4 @@ const[endDate, setEndDate] = useState("")
     )
 }
 
-export default addTrip
+export default AddTrip

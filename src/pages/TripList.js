@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from "react-router-dom";
 import { Card, Button } from 'react-bootstrap'
-import AddTrip from './AddTrip';
+
 
 const API_URL = 'http://localhost:3000'
 
@@ -13,18 +13,10 @@ const API_URL = 'http://localhost:3000'
 const TripList = () => {
   const [trips, setTrips] = useState([])
 
-
-  const getAllTrips = () => {
-
+  useEffect(() => {
     axios.get(`${API_URL}/api/trips`)
       .then((res) => setTrips(res.data))
       .catch((err) => console.log(err));
-
-  }
-
-
-  useEffect(() => {
-    getAllTrips();
   }, [])
 
 
@@ -32,28 +24,25 @@ const TripList = () => {
   return (
     <div className='TripsList'>
 
-
-      <AddTrip refreshTrips={getAllTrips} />
-
-
       {trips.map((trip) => {
         return (
 
-          <div className='TripListPage'>
-            <Link to={`/trips/${trip._id}`} key={trip._id}>
+          <div className='TripListPage' key={trip._id}>
 
-              <Card className='text-center'
-                style={{ width: '18rem' }}
-              >
 
-                <Card.Img variant="top" src={trip.image} />
-                <Card.Body>
-                  <Card.Title>{trip.title}</Card.Title>
+            <Card className='text-center'
+              style={{ width: '18rem' }}
+            >
+
+              <Card.Img variant="top" src={trip.image} />
+              <Card.Body>
+                <Card.Title>{trip.destination}</Card.Title>
+                <Link to={`/trips/${trip._id}`} >
                   <Button>See more</Button>
-                </Card.Body>
+                </Link>
+              </Card.Body>
 
-              </Card>
-            </Link>
+            </Card>
           </div>
         )
       })}

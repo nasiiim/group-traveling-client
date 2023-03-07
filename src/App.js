@@ -1,7 +1,10 @@
 import  {Container}  from 'react-bootstrap';
 import './App.css';
 import { Routes, Route } from "react-router-dom";
-import startPage from './pages/HomePage';
+
+import HomePage from './pages/HomePage';
+import EditTrip from './pages/EditTrip';
+import TripDetails from './pages/TripDetails';
 
 
 function App() {
@@ -10,8 +13,10 @@ function App() {
        <Container>
         
         <Routes>
-        <Route path="/" element={<startPage />} /> 
-
+        <Route path="/" element={<HomePage />} /> 
+        {/* <Route path="/" element={<startPage />} /> */}
+        <Route path="/trips/edit/:tripId" element={ <EditTrip /> } />
+        <Route path="/trips/:tripId" element={ <TripDetails /> } />
         </Routes>
 
 
