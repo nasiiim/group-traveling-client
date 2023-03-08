@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from "react";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
+
 
 const API_URL = "http://localhost:3000"
 const AuthContext = React.createContext();
@@ -12,9 +14,21 @@ function AuthProviderWrapper(props) {
 
 
   const storeToken = (Token) => {
-    localStorage.setItem('authToken', token)
+    localStorage.setItem('authToken', Token)
+    localStorage.setItem('userId', getUserId(Token))
   }
 
+
+  const getUserId = (Token) => {
+    var decoded = jwt_decode(Token);
+    return decoded._id
+  }
+
+  const isCreatorLoggedIn= (creatorId) =>{
+    const token = localStorage.getItem('authToken');
+    const currntUserId = getUserId(token)
+    return creatorId === currntUserId
+  }
   const authenticateUser = () => {
 
     const storedToken = localStorage.getItem('authToken');
@@ -40,18 +54,18 @@ function AuthProviderWrapper(props) {
   }
 
 
-  const removeToken = () => {                    
+  const removeToken = () => {
     localStorage.removeItem("authToken");
   }
 
 
-  const logOutUser = () => {                   
-    removeToken();   
+  const logOutUser = () => {
+    removeToken();
     authenticateUser();
-  }  
+  }
 
 
-  useEffect(() => {                                                  
+  useEffect(() => {
     authenticateUser()
   }, []);
 
@@ -64,7 +78,8 @@ function AuthProviderWrapper(props) {
       user,
       storeToken,
       authenticateUser,
-      logOutUser
+      logOutUser,
+      isCreatorLoggedIn
     }}>
       {props.children}
     </AuthContext.Provider>
