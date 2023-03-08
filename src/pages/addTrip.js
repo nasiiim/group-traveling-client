@@ -3,7 +3,7 @@ import { useState } from 'react'
 import axios from 'axios';
 import {
     Container, Form, Row, Col,
-     FormControl, Button
+    FormControl, Button
 } from 'react-bootstrap'
 
 
@@ -18,8 +18,8 @@ const AddTrip = (props) => {
 
     const submitForm = (e) => {
         e.preventDefault()
-
-        const body = { startDate: startDate, endDate: endDate, destination: location }
+        const userId = localStorage.getItem('userId');
+        const body = { creatorId: userId, startDate: startDate, endDate: endDate, destination: location }
 
         axios.post(`${API_URL}/api/trips`, body)
             .then((res) => {
