@@ -8,7 +8,7 @@ const HomePage = () => {
     <div>
       <h1>Home Page</h1>
       <AddTrip />
-      <TripList />
+      <TripList filterType='all' />
     </div>
   )
 }
