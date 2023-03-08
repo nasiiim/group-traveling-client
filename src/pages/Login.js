@@ -15,7 +15,7 @@ const Login = (props) => {
 
     const navigate = useNavigate();
 
-    const { storeToken } = useContext(AuthContext);
+    const { storeToken, authenticateUser} = useContext(AuthContext);
 
 
     const handleLoginSubmit = (e) => {
@@ -27,6 +27,7 @@ const Login = (props) => {
             .then((res) => {
                 console.log("JWT token", response.data.authToken);
                 storeToken(res.data.authToken)
+                authenticateUser()
                 navigate("/")
             })
             .catch((error) => {
