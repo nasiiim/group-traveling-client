@@ -5,6 +5,8 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from './pages/HomePage';
 import EditTrip from './pages/EditTrip';
 import TripDetails from './pages/TripDetails';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
 
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
         {/* <Route path="/" element={<startPage />} /> */}
         <Route path="/trips/edit/:tripId" element={ <EditTrip /> } />
         <Route path="/trips/:tripId" element={ <TripDetails /> } />
+        <Route path="/signup" element={ <Signup /> } />
+        <Route path="/login" element={ <Login /> } />
         </Routes>
 
 
