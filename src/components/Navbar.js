@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 
+import Button from 'react-bootstrap/Button'
+
 const Navbar = () => {
 
     const { isLoggedIn, user,  logOutUser } = useContext(AuthContext);
@@ -10,20 +12,20 @@ const Navbar = () => {
     return (
         <nav>
             <Link to="/">
-                <button>Home</button>
+                <Button variant="light">Home</Button>
             </Link>
 
             {isLoggedIn && (
                 <>
-                    <button onClick={logOutUser}>Logout</button>
+                    <Button variant="light" onClick={logOutUser}>Logout</Button>
                     <Link to="/userPanel">{user && user.name}</Link>
                 </>
             )}
 
             {!isLoggedIn && (
                 <>
-                    <Link to="/signup"> <button>Sign Up</button> </Link>
-                    <Link to="/login"> <button>Login</button> </Link>
+                    <Link to="/signup"> <Button variant="light">Sign Up</Button> </Link>
+                    <Link to="/login"> <Button variant="light">Login</Button> </Link>
                 </>
             )}
 
