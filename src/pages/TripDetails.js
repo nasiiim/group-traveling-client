@@ -10,7 +10,6 @@ const TripDetails = () => {
   const { tripId } = useParams();
 
   useEffect(() => {
-    console.log('333333333')
     axios.get(`${API_URL}/api/trips/${tripId}`)
       .then((res) => {
         const oneTrip = res.data

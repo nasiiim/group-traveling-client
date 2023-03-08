@@ -15,11 +15,8 @@ const Navbar = () => {
 
             {isLoggedIn && (
                 <>
-                    <Link to="/projects">
-                        <button>Edit</button>
-                    </Link>
                     <button onClick={logOutUser}>Logout</button>
-                    <span>{user && user.name}</span>
+                    <Link to="/userPanel">{user && user.name}</Link>
                 </>
             )}
 
