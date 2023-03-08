@@ -23,7 +23,7 @@ const TripList = (props) => {
     axios.get(`${API_URL}/api/trips?type=${filterType}`)
       .then((res) => setTrips(res.data))
       .catch((err) => console.log(err));
-  }, [])
+  }, [filterType])
 
 
 

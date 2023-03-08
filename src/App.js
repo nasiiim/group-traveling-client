@@ -7,7 +7,6 @@ import EditTrip from './pages/EditTrip';
 import TripDetails from './pages/TripDetails';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import IsPrivate from './components/IsPrivate';
 import Navbar from './components/Navbar';
 import UserPanel from './pages/UserPanel';
 
@@ -21,7 +20,7 @@ function App() {
         <Routes>
         <Route path="/" element={<HomePage />} /> 
         {/* <Route path="/" element={<startPage />} /> */}
-        <Route path="/trips/edit/:tripId" element={<IsPrivate> <EditTrip /> </IsPrivate> } />
+        <Route path="/trips/edit/:tripId" element={<EditTrip />  } />
         <Route path="/trips/:tripId" element={ <TripDetails /> } />
         <Route path="/signup" element={ <Signup /> } />
         <Route path="/login" element={ <Login /> } />

@@ -4,7 +4,7 @@ import axios from "axios";
 
 import {
     Container, Form, Row, Col,
-     FormControl, Button
+    FormControl, Button
 } from 'react-bootstrap'
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -15,80 +15,85 @@ const EditTrip = () => {
     const [startDate, setStartDate] = useState("")
     const [endDate, setEndDate] = useState("")
 
-    const { tripId } = useParams(); 
-    const navigate = useNavigate(); 
+    const { tripId } = useParams();
+    const navigate = useNavigate();
 
 
 
-    useEffect(()=>{
+    useEffect(() => {
         axios.get(`${API_URL}/api/trips/${tripId}`)
-        .then((res) => {
-            const oneTrip = res.data
-            setLocation(oneTrip.destination)
-            setStartDate(oneTrip.startDate)
-            setEndDate(oneTrip.endDate)
-        })
-        .catch((err) => console.log(err));
+            .then((res) => {
+                const oneTrip = res.data
+                setLocation(oneTrip.destination)
+                setStartDate(oneTrip.startDate)
+                setEndDate(oneTrip.endDate)
+            })
+            .catch((err) => console.log(err));
     }, [tripId])
 
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
 
-        const requestBody = { location, startDate, endDate}
-
+        const requestBody = { destination: location, startDate, endDate }
         axios.put(`${API_URL}/api/trips/${tripId}`, requestBody)
-        .then((res) => {
-            navigate(`/trips/${tripId}`)
-        })
+            .then((res) => {
+                navigate(`/trips/${tripId}`)
+            })
 
     }
 
 
+    const deleteTrip = () => {
+        axios.delete(`${API_URL}/api/trips/${tripId}`)
+            .then(() => {
+                navigate('/trips')
+            })
+            .catch((err) => console.log(err));
+    }
 
 
+    return (
+        <div className='EditTripPAge'>
+            <h4>Edit your Trip:</h4>
 
-  return (
-    <div className='EditTripPAge'>
-        <h4>Edit your Trip:</h4>
-
-        <Container>
-            <Row>
-                <Col md={{ span: 8, offset: 2 }}>
-                    <Form className='form-trip' onSubmit={handleFormSubmit} >
-                        <Row>
-                            <FormControl type='text'
-                                placeholder='Where?'
-                                value={location}
-                                onChange={(e) => setLocation(e.target.value)}
-                            />
-                        </Row>
-                        <Row>
-                            <Col>
-                                <FormControl type='datetime-local'
-                                    placeholder='checkin'
-                                    value={startDate}
-                                    onChange={(e) => setStartDate(e.target.value)}
+            <Container>
+                <Row>
+                    <Col md={{ span: 8, offset: 2 }}>
+                        <Form className='form-trip' onSubmit={handleFormSubmit} >
+                            <Row>
+                                <FormControl type='text'
+                                    placeholder='Where?'
+                                    value={location}
+                                    onChange={(e) => setLocation(e.target.value)}
                                 />
-                            </Col>
-                            <Col>
-                                <FormControl type='datetime-local'
-                                    placeholder='checkout'
-                                    value={endDate}
-                                    onChange={(e) => setEndDate(e.target.value)}
-                                />
-                            </Col>
-                        </Row>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <FormControl type='date'
+                                        placeholder='checkin'
+                                        value={startDate}
+                                        onChange={(e) => setStartDate(e.target.value)}
+                                    />
+                                </Col>
+                                <Col>
+                                    <FormControl type='date'
+                                        placeholder='checkout'
+                                        value={endDate}
+                                        onChange={(e) => setEndDate(e.target.value)}
+                                    />
+                                </Col>
+                            </Row>
 
-                        <Button variant='success' type='submit'>Update Trip</Button>
-                    </Form>
-                </Col>
-            </Row>
+                            <Button variant='success' type='submit'>Update Trip</Button>
+                        </Form>
+                    </Col>
+                </Row>
+                <Button variant="danger" onClick={deleteTrip}>Delete </Button>
+            </Container>
 
-        </Container>
-      
-    </div>
-  )
+        </div>
+    )
 }
 
 export default EditTrip
