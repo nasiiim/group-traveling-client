@@ -1,32 +1,40 @@
 import React from 'react'
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/auth.context"; 
 
 const API_URL = "http://localhost:3000";
 
 
-const handleLoginSubmit = (e) => {
-    e.preventDefault()
-
-    const requestBody = { email, password }
-
-    axios.post(`${API_URL}/auth/login`, requestBody)
-        .then((res) => {
-            console.log("JWT token", response.data.authToken);
-            navigate("/")
-        })
-        .catch((error) => {
-            const errorDescription = error.response.data.message;
-            setErrorMessage(errorDescription);
-        })
-}
-
-
-
-
-
 const Login = (props) => {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState(undefined);
+
+    const navigate = useNavigate();
+
+    const { storeToken } = useContext(AuthContext);
+
+
+    const handleLoginSubmit = (e) => {
+        e.preventDefault()
+    
+        const requestBody = { email, password }
+    
+        axios.post(`${API_URL}/auth/login`, requestBody)
+            .then((res) => {
+                console.log("JWT token", response.data.authToken);
+                storeToken(res.data.authToken)
+                navigate("/")
+            })
+            .catch((error) => {
+                const errorDescription = error.response.data.message;
+                setErrorMessage(errorDescription);
+            })
+    }
+
     return (
         <div className="Login">
             <h2>Login</h2>
