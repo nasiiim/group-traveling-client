@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import axios from 'axios';
 import { useState } from 'react';
 import TripList from './TripList';
@@ -29,24 +29,6 @@ const HomePage = () => {
   }
 
 
-
-const data = [
-  {
-      "_id": "64067b8a9450c74c5d608af7",
-      "startDate": "1970-01-01T00:00:00.023Z",
-      "endDate": "1970-01-01T00:00:00.012Z",
-      "destination": "Isfahan-new3",
-      "__v": 0,
-      "creatorId": "6408cb23353d9c4c472ca69a"
-  },
-  {
-      "_id": "6407adeecba6c00e20dd1246",
-      "startDate": "1970-01-01T00:00:00.020Z",
-      "endDate": "1970-01-01T00:00:00.012Z",
-      "destination": "9",
-      "__v": 0
-  }
-]
 
   return (
     <div>

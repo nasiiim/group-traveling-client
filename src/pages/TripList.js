@@ -16,14 +16,21 @@ const API_URL = 'http://localhost:3000'
 const TripList = (props) => {
   const { isCreatorLoggedIn } = useContext(AuthContext);
 
-  const { filterType } = props
+  const { filterType, tripDataList } = props
   const [trips, setTrips] = useState([])
 
-  useEffect(() => {
-    axios.get(`${API_URL}/api/trips?type=${filterType}`)
-      .then((res) => setTrips(res.data))
-      .catch((err) => console.log(err));
-  }, [filterType])
+  useEffect(() => {       //todo: fix - dosen't filter data when input is impty
+    console.log(tripDataList)
+    if (tripDataList) {
+      setTrips(tripDataList)
+    }
+    else {
+      axios.get(`${API_URL}/api/trips?type=${filterType}`)
+        .then((res) => setTrips(res.data))
+        .catch((err) => console.log(err));
+    }
+
+  }, [filterType, tripDataList])
 
 
 
