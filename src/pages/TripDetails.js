@@ -1,16 +1,20 @@
 import { useState, useEffect, useContext, React } from "react";
 import axios from "axios";
-import { Link, useParams } from 'react-router-dom';
-import { Button } from 'react-bootstrap'
+import {  useParams } from 'react-router-dom';
+// import { Button } from 'react-bootstrap'
 import { AuthContext } from "../context/auth.context";
+import image1 from "../images/img-plc.webp"
+import { Button, Col, Row } from 'react-bootstrap'
 
+import './TripDetails.css'
 
 const API_URL = "http://localhost:3000";
 
 const TripDetails = () => {
+  const { isCreatorLoggedIn, user } = useContext(AuthContext);
+
   const [trip, setTrip] = useState({})
   const { tripId } = useParams();
-  const { user } = useContext(AuthContext);
   useEffect(() => {
     axios.get(`${API_URL}/api/trips/${tripId}`)
       .then((res) => {
@@ -40,16 +44,35 @@ const TripDetails = () => {
 
 
   return (
-    <div className='TripDetails'>
-      <li className="TripCard card" key={trip._id}>
-        {/* <img src={trip.image} /> */}
-        <h3>{trip.destination}</h3>
-        <p>{trip.startDate}</p>
-        <p>{trip.startDate}</p>
-      </li>
 
-      <Link to='/'>Back</Link>
-      <Button variant="primary" onClick={handleAddSubscriber}>Join</Button>
+    <div className='TripDetails' >
+      <Row>
+        <Col  ><img src={image1} /></Col>
+        <Col md="auto" key={trip._id} >
+          {/* <span className="TripCard card"> */}
+
+          <h3>{trip.destination}</h3>
+          <p>{trip.startDate}</p>
+          <p>{trip.startDate}</p>
+     
+
+          {/* </span> */}
+        </Col>
+        <Col >
+          {!isCreatorLoggedIn(trip.creatorId) && (
+            <>
+              <Button id='btn-join' variant="primary" onClick={handleAddSubscriber}>Join</Button>
+            </>
+          )}
+
+
+        </Col>
+      </Row>
+
+
+      {/* <Link to='/'>Back</Link> */}
+
+
     </div>
   )
 }

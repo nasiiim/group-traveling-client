@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Button, Row} from 'react-bootstrap'
 
 
-const startPage = () => {
+const StartPage = () => {
   return (
     <div>
         <Container>
@@ -20,4 +20,4 @@ const startPage = () => {
 }
 
 
-export default startPage
+export default StartPage

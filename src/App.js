@@ -1,4 +1,3 @@
-import  {Container}  from 'react-bootstrap';
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 
@@ -7,16 +6,16 @@ import EditTrip from './pages/EditTrip';
 import TripDetails from './pages/TripDetails';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import Navbar from './components/Navbar';
+import Navbar2 from './components/Navbar';
 import UserPanel from './pages/UserPanel';
 
 function App() {
   return (
     <div className="App">
 
-     <Navbar />
+     <Navbar2/>
 
-       <Container>
+       <div>
         <Routes>
         <Route path="/" element={<HomePage />} /> 
         {/* <Route path="/" element={<startPage />} /> */}
@@ -28,7 +27,7 @@ function App() {
         </Routes>
 
 
-       </Container>
+       </div>
     </div>
   );
 }

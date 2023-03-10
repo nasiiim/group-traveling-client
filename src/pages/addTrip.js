@@ -5,6 +5,7 @@ import {
     Container, Form, Row, Col,
     FormControl, Button
 } from 'react-bootstrap'
+import './AddTrip.css'
 
 
 
@@ -32,10 +33,12 @@ const AddTrip = (props) => {
 
 
     return (
-        <Container>
+        <Container  className='AddTripPage'>
             <Row>
                 <Col md={{ span: 8, offset: 2 }}>
                     <Form className='form-trip' onSubmit={submitForm}>
+                    <h4>New Trip</h4>
+
                         <Row>
                             <FormControl type='text'
                                 placeholder='Where?'
@@ -60,7 +63,7 @@ const AddTrip = (props) => {
                             </Col>
                         </Row>
 
-                        <Button variant='success' type='submit'>Confirm</Button>
+                        <Button variant='success' type='submit' id='btn-update'>Add new trip</Button>
                     </Form>
                 </Col>
             </Row>

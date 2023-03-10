@@ -8,6 +8,8 @@ import {
 } from 'react-bootstrap'
 import { useParams, useNavigate } from "react-router-dom";
 
+import './EditTrip.css'
+
 const API_URL = "http://localhost:3000"
 
 const EditTrip = () => {
@@ -55,12 +57,13 @@ const EditTrip = () => {
 
     return (
         <div className='EditTripPAge'>
-            <h4>Edit your Trip:</h4>
+           
 
             <Container>
                 <Row>
                     <Col md={{ span: 8, offset: 2 }}>
                         <Form className='form-trip' onSubmit={handleFormSubmit} >
+                        <h4>Edit your Trip:</h4>
                             <Row>
                                 <FormControl type='text'
                                     placeholder='Where?'
@@ -85,11 +88,17 @@ const EditTrip = () => {
                                 </Col>
                             </Row>
 
-                            <Button variant='success' type='submit'>Update Trip</Button>
+                            <Button variant='success' type='submit' id='btn-update'>Update Trip</Button>
                         </Form>
+                        
                     </Col>
                 </Row>
-                <Button variant="danger" onClick={deleteTrip}>Delete </Button>
+                <Row>
+                    <Col id='btn-delete'>
+                    <Button variant="danger" onClick={deleteTrip}>Delete </Button>
+                    </Col>
+                    </Row>
+               
             </Container>
 
         </div>

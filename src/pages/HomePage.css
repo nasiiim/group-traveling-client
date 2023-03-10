@@ -1,0 +1,46 @@
+.home-page {
+    /* display: flex;
+    flex-direction: column;
+    width: 100%; */
+    background-color: #F9F1F0;
+}
+
+/* .container{
+    /* max-width: '100%'; */
+/* background-color: brown;
+    margin: 0;
+    padding-right: 0%;
+    height: 30%; */
+/* } */
+
+.header-image {
+    background-image: url('../images/photo-travel.jpg');
+    background-position: 0 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 650px;
+    padding-top: 50px;
+    position: relative;
+
+}
+
+.form-search {}
+
+#input {
+    width: 30%;
+}
+
+.taghi {
+    width: 650px;
+}
+
+.form-text {
+    line-height: 45px;
+    height: 90px;
+    padding: 15px 0;
+}
+
+#btn-search {
+    background-color: #05445E;
+    color: #FFF;
+}

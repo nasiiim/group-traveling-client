@@ -1,0 +1,39 @@
+
+.container-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100vw;
+    /* height: ; */
+    background-color: #05445E;
+    padding: 10px;
+
+}
+
+.navbar-global{
+    background-color: #05445E;
+}
+
+.btn-nav {
+    margin: 5px ;
+}
+
+#home{
+    color: #FFF;
+    text-decoration: none;
+}
+.link-nav {
+    padding-left: 10px;
+    padding-right: 15px;
+    color: #FFF;
+    text-decoration: none;
+}
+.link-nav:hover {
+    padding-left: 10px;
+    padding-right: 15px;
+    color: #FEFEFE;
+    text-decoration: none;
+}
+
+

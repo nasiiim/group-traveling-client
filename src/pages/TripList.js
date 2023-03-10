@@ -3,9 +3,12 @@ import React from 'react'
 import { useContext, useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from "react-router-dom";
-import { Card, Button } from 'react-bootstrap'
-
+import { Card, Button,   } from 'react-bootstrap'
+import image1 from "../images/img-plc.webp"
 import { AuthContext } from "../context/auth.context";
+
+import './TripList.css';
+
 
 
 
@@ -35,17 +38,18 @@ const TripList = (props) => {
 
 
   return (
-    <div className='TripsList'>
-
+    <div className='List'>
+      
       {trips.map((trip) => {
         return (
-
           <div className='TripListPage' key={trip._id}>
-            <Card className='text-center'
+            <Card border="light" className='text-center'
               style={{ width: '18rem' }}
+              bg = "light"
+              id='card'
             >
-
-              <Card.Img variant="top" src={trip.image} />
+                {/* src={trip.image} */}
+              <Card.Img variant="top" src={image1} />
               <Card.Body>
                 <Card.Title>{trip.destination}</Card.Title>
 
@@ -59,15 +63,17 @@ const TripList = (props) => {
                 )}
 
                 <Link to={`/trips/${trip._id}`} >
-                  <Button>See more</Button>
+                  <Button id='btn-gn'>See more</Button>
                 </Link>
               </Card.Body>
 
             </Card>
+           
           </div>
+        
         )
       })}
-
+      
 
     </div>
   )
